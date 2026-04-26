@@ -17,8 +17,6 @@ def _build_prompt(cluster_features):
         "Based on the top distinguishing features (shown as z-score deviations from the global mean),",
         "assign each cluster a short, evocative emotion label (1-3 words) that personifies the computer's state.",
         "",
-        "Examples of good labels: 'Calm', 'Stressed', 'Deep Focus', 'Overheating', 'Idle', 'Heavy Lifting', 'Dying Battery'.",
-        "",
         "Here are the clusters and their top features:",
         "",
     ]
@@ -31,7 +29,7 @@ def _build_prompt(cluster_features):
         "",
         "Respond with ONLY a valid JSON object mapping cluster integer IDs (as strings) to their emotion label strings.",
         "Do not include any other text, markdown formatting, or code fences.",
-        'Example format: {"0": "Calm", "1": "Stressed", "2": "Deep Focus", "3": "Idle", "4": "Heavy Lifting"}',
+        'Example format: {"0": "[EMOTION]", "1": "[EMOTION]", "2": "[EMOTION]", "3": "[EMOTION]", "4": "[EMOTION]"}',
     ])
     
     return "\n".join(lines)

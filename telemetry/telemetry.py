@@ -49,6 +49,21 @@ class SystemTelemetryDaemon:
                 except Exception:
                     pass
 
+            # Fan Telemetry
+            fans_data = []
+            if hasattr(psutil, "sensors_fans"):
+                try:
+                    fans = psutil.sensors_fans()
+                    if fans:
+                        for name, entries in fans.items():
+                            for entry in entries:
+                                fans_data.append({
+                                    "label": entry.label or name,
+                                    "current": entry.current
+                                })
+                except Exception:
+                    pass
+
             metrics = {
                 "timestamp": time.time(),
                 "cpu_percent": cpu,
@@ -58,6 +73,7 @@ class SystemTelemetryDaemon:
                 "disk_percent": disk.percent,
                 "battery_percent": battery.percent if battery else None,
                 "battery_plugged": battery.power_plugged if battery else None,
+                "fans": fans_data,
                 "gpus": gpu_data
             }
             

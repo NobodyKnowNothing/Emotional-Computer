@@ -34,6 +34,9 @@ class TelemetryAggregator:
                 for i, gpu in enumerate(value):
                     flat[f"gpu_{i}_load"] = gpu.get("load", np.nan)
                     flat[f"gpu_{i}_temperature"] = gpu.get("temperature", np.nan)
+            elif key == "fans" and isinstance(value, list):
+                for i, fan in enumerate(value):
+                    flat[f"fan_{i}_speed"] = fan.get("current", np.nan)
             elif isinstance(value, (int, float)) and not isinstance(value, bool):
                 flat[key] = value
             elif value is None:
