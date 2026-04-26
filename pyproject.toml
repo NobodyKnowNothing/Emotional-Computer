@@ -9,4 +9,8 @@ dependencies = [
     "fastmcp>=3.2.4",
     "google>=3.0.0",
     "google-genai>=1.73.1",
+    "psutil",
+    "opentelemetry-sdk",
+    "numpy",
+    "pandas",
 ]
